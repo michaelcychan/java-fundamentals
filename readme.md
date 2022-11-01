@@ -7,7 +7,7 @@ At the time of writing this article, the latest version of Gradle is 6.5.1. Befo
 
 Downloading the Gradle binary-only zip file in the `/tmp` directory using the following `wget` command:
 ```
-VERSION=6.5.1
+VERSION=7.5.1
 wget https://services.gradle.org/distributions/gradle-${VERSION}-bin.zip -P /tmp
 ```
 
@@ -24,3 +24,9 @@ Gradle is regularly updated with security patches and new features. To have more
 sudo ln -s /opt/gradle/gradle-${VERSION} /opt/gradle/latest
 ```
 Later, when upgrading Gradle, unpack the newer version and change the symlink to point to it.
+
+### Add Gradle to Env
+```
+export GRADLE_HOME=/opt/gradle/latest
+export PATH=${GRADLE_HOME}/bin:${PATH}
+```
