@@ -3,3 +3,7 @@ class Hello {
     System.out.println("Hello, Makers!");
   }
 }
+
+// puts "Hello, Makers!"
+// print("Hello, Makers!")
+// console.log("hello, Makers!")
