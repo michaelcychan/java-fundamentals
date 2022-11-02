@@ -12,4 +12,11 @@ public class GameTest {
     String expectedOutput = "M_____";
     assertEquals(game.getWordToGuess(), expectedOutput);
   }
+
+  @Test public void testGetsInitialRemainingAttempts() {
+    String inputWord = "MAKERS";
+    Game game = new Game(inputWord);
+
+    assertEquals("Should start with 10 attempts", Integer.valueOf(10), game.getRemainingAttempts());
+  }
 }
