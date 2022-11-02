@@ -1,12 +1,17 @@
 package game;
 
+import java.util.ArrayList;
+
 public class Game {
   String word;
   Integer attemptsLeft;
+  public static final String[] DICTIONARY = {"MAKERS", "CANDIES", "DEVELOPER", "LONDON"};
+
   // create a constructor function, with the same name as the class
   public Game(String inputWord) {
-    this.word = inputWord;
+    this.word = getRandomWordFromDictionary();
     this.attemptsLeft = 10;
+    
   }
 
   public String getWordToGuess() {
@@ -20,5 +25,10 @@ public class Game {
 
   public Integer getRemainingAttempts() {
     return this.attemptsLeft;
+  }
+
+  public String getRandomWordFromDictionary() {
+    Integer index = (int) (Math.random() * DICTIONARY.length);
+    return DICTIONARY[index];
   }
 }

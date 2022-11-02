@@ -19,4 +19,11 @@ public class GameTest {
 
     assertEquals("Should start with 10 attempts", Integer.valueOf(10), game.getRemainingAttempts());
   }
+
+  @Test public void testGetRandomWord() {
+    String inputWord = "MAKERS";
+    Game game = new Game(inputWord);
+
+    assertEquals("Should return MAKERS", String.valueOf("MAKERS"), game.getRandomWordFromDictionary());
+  }
 }
