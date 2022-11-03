@@ -8,6 +8,7 @@ public class Game {
     private Integer attemptsLeft;
     private ArrayList<Character> guessedChr;
     private Boolean win;
+    private Integer uniqChar;
 
     // create a constructor function, with the same name as the class
     public Game(WordChooser wordChooser) {
@@ -15,15 +16,14 @@ public class Game {
         this.attemptsLeft = 10;
         this.guessedChr = new ArrayList<Character>();
         this.win = false;
+        this.uniqChar = (int) this.word.substring(1).chars().distinct().count();
     }
 
     public String getWordToGuess() {
         StringBuilder sBuilder = new StringBuilder(this.word);
-        this.win = true;
         for (int i = 1; i < this.word.length(); i++) {
             if (this.guessedChr.contains(this.word.charAt(i))) {} else {
                 sBuilder.replace(i, i + 1, "_");
-                this.win = false;
             }
         }
         return sBuilder.toString();
@@ -39,6 +39,9 @@ public class Game {
             return false;
         } else {
             this.guessedChr.add(chr);
+            if (this.guessedChr.size() == this.uniqChar) {
+                this.win = true;
+            }
             return true;
         }
     }

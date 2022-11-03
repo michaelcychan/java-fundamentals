@@ -7,6 +7,7 @@ import static org.mockito.Mockito.*;
 public class GameTest {
     @Test public void testGetsInitialRemainingAttempts() {
         WordChooser mockedChooser = mock(WordChooser.class);
+        when(mockedChooser.getRandomWordFromDictionary()).thenReturn("TESTTEXT");
     
         Game game = new Game(mockedChooser);
         assertEquals("Should start with 10 attempts", Integer.valueOf(10), game.getRemainingAttempts());
@@ -73,6 +74,19 @@ public class GameTest {
         assertEquals(true, game.guessLetter('T'));
         assertEquals("Should remain 10 attempts after one correct attempt", Integer.valueOf(10), game.getRemainingAttempts());
         assertEquals("Should return a new text if guessed correctly once", "T__TT__T", game.getWordToGuess());
+    }
+
+    @Test public void testWinning() {
+        WordChooser mockedChooser = mock(WordChooser.class);
+        when(mockedChooser.getRandomWordFromDictionary()).thenReturn("TEA");
+
+        Game game = new Game(mockedChooser);
+        
+        game.guessLetter('T');
+        game.guessLetter('E');
+        game.guessLetter('A');
+
+        assertEquals(true, game.getWinStatus());
     }
     
 
