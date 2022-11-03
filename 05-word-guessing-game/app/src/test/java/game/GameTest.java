@@ -88,6 +88,34 @@ public class GameTest {
 
         assertEquals(true, game.getWinStatus());
     }
+
+    @Test public void testWinningWithDuplicateChar() {
+        WordChooser mockedChooser = mock(WordChooser.class);
+        when(mockedChooser.getRandomWordFromDictionary()).thenReturn("COOL");
+
+        Game game = new Game(mockedChooser);
+        
+        game.guessLetter('C');
+        game.guessLetter('O');
+        game.guessLetter('L');
+
+        assertEquals(true, game.getWinStatus());
+    }
+
+    @Test public void testWinningWithDuplicateCharWithBeginning() {
+        WordChooser mockedChooser = mock(WordChooser.class);
+        when(mockedChooser.getRandomWordFromDictionary()).thenReturn("TEST");
+
+        Game game = new Game(mockedChooser);
+        
+        game.guessLetter('E');
+        game.guessLetter('S');
+        assertEquals(false, game.getWinStatus());
+
+        game.guessLetter('T');
+        assertEquals(true, game.getWinStatus());
+        
+    }
     
 
 }
