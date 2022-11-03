@@ -1,13 +1,17 @@
 package game;
 
+import java.util.ArrayList;
+
 public class Game {
-    String word;
-    Integer attemptsLeft;
+    private String word;
+    private Integer attemptsLeft;
+    private ArrayList<Character> guessedChr;
 
     // create a constructor function, with the same name as the class
     public Game(WordChooser wordChooser) {
         this.word = wordChooser.getRandomWordFromDictionary();
-        this.attemptsLeft = 10; 
+        this.attemptsLeft = 10;
+        this.guessedChr = new ArrayList<Character>();
     }
 
     public String getWordToGuess() {
@@ -21,5 +25,15 @@ public class Game {
 
     public Integer getRemainingAttempts() {
         return this.attemptsLeft;
+    }
+
+    public Boolean guessLetter(Character chr) {
+        if (this.word.indexOf(chr) == -1) {
+            this.attemptsLeft -= 1;
+            return false;
+        } else {
+            this.guessedChr.add(chr);
+            return true;
+        }
     }
 }
