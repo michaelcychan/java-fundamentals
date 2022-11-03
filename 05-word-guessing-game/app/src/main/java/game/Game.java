@@ -3,6 +3,7 @@ package game;
 import java.util.ArrayList;
 
 public class Game {
+    // Create variables opportunity to be declared in constructor function
     private String word;
     private Integer attemptsLeft;
     private ArrayList<Character> guessedChr;
@@ -17,7 +18,9 @@ public class Game {
     public String getWordToGuess() {
         StringBuilder sBuilder = new StringBuilder(this.word);
         for (int i = 1; i < this.word.length(); i++) {
-            sBuilder.replace(i, i + 1, "_");
+            if (this.guessedChr.contains(this.word.charAt(i))) {} else {
+                sBuilder.replace(i, i + 1, "_");
+            }
         }
         String output = sBuilder.toString();
         return output;
