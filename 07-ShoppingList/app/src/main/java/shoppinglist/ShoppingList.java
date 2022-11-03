@@ -13,5 +13,9 @@ public class ShoppingList {
         return this.list;
     }
 
+    public void addItem(ShoppingItem item) {
+        this.list.add(item);
+    }
+
 
 }
