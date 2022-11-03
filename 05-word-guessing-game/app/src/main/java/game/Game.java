@@ -9,10 +9,12 @@ public class Game {
     private ArrayList<Character> guessedChr;
     private Boolean win;
     private Integer uniqChar;
+    private Masker masker;
 
     // create a constructor function, with the same name as the class
-    public Game(WordChooser wordChooser) {
+    public Game(WordChooser wordChooser, Masker masker) {
         this.word = wordChooser.getRandomWordFromDictionary();
+        this.masker = masker;
         this.attemptsLeft = 10;
         this.guessedChr = new ArrayList<Character>();
         this.win = false;
@@ -20,13 +22,7 @@ public class Game {
     }
 
     public String getWordToGuess() {
-        StringBuilder sBuilder = new StringBuilder(this.word);
-        for (int i = 1; i < this.word.length(); i++) {
-            if (this.guessedChr.contains(this.word.charAt(i))) {} else {
-                sBuilder.replace(i, i + 1, "_");
-            }
-        }
-        return sBuilder.toString();
+        return this.masker.getsMaskedWord(this.word, this.guessedChr);
     }
 
     public Integer getRemainingAttempts() {
