@@ -16,14 +16,25 @@ public class App {
         Game game1 = new Game(wc, masker);
         Game game2 = new Game(wc, masker);
         Multiplayer mp = new Multiplayer(game1, game2);
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter name for Player1");
+        String usrName = scanner.nextLine();
+        mp.inputPlayerName(usrName);
+        mp.changePlayer();
+        System.out.println("Enter name for Player2");
+        usrName = scanner.nextLine();
+        mp.inputPlayerName(usrName);
+        mp.changePlayer();
+        System.out.println("");
         
         System.out.println("Welcome! Today the word to guess is");
         System.out.printf("%s: %s \n", mp.getPlayername(), mp.getCurrent().getWordToGuess());
         mp.changePlayer();
         System.out.printf("%s: %s \n", mp.getPlayername(), mp.getCurrent().getWordToGuess());
         mp.changePlayer();
+        System.out.println("");
         
-        Scanner scanner = new Scanner(System.in);
         while (!mp.gameEnds()) {
             
             System.out.printf("%s, enter one letter to guess (%d attempts remaining): \n", mp.getPlayername(), mp.getCurrent().getRemainingAttempts());
@@ -35,6 +46,7 @@ public class App {
                 System.out.println("Wrong...");
             }
             System.out.println(mp.getCurrent().getWordToGuess());
+            System.out.println("");
             mp.changePlayer();
 
         }
