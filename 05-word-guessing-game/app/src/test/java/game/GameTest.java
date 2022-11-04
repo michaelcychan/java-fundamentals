@@ -155,5 +155,23 @@ public class GameTest {
         
     }
     
+    @Test public void testWinningWithTheWordDEVELOPER() {
+        WordChooser mockedChooser = mock(WordChooser.class);
+        when(mockedChooser.getRandomWordFromDictionary()).thenReturn("DEVELOPER");
 
+        Masker mockedMasker = mock(Masker.class);
+
+        Game game = new Game(mockedChooser, mockedMasker);
+        
+        game.guessLetter('E');
+        game.guessLetter('V');
+        game.guessLetter('L');
+        game.guessLetter('O');
+        game.guessLetter('R');
+        assertEquals(false, game.getWinStatus());
+
+        game.guessLetter('P');
+        assertEquals(true, game.getWinStatus());
+        
+    }
 }

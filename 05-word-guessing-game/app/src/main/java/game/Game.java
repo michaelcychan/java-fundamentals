@@ -34,7 +34,9 @@ public class Game {
             this.attemptsLeft -= 1;
             return false;
         } else {
-            this.guessedChr.add(chr);
+            if (this.guessedChr.indexOf(chr) == -1) {
+                this.guessedChr.add(chr);
+            }
             if (this.guessedChr.size() == this.uniqChar) {
                 this.win = true;
             }

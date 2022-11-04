@@ -13,25 +13,59 @@ public class App {
     public static void main(String[] args) {
         WordChooser wc = new WordChooser();
         Masker masker = new Masker();
-        Game game = new Game(wc, masker);
+        Game game1 = new Game(wc, masker);
+        Game game2 = new Game(wc, masker);
+        Multiplayer mp = new Multiplayer(game1, game2);
         
-        System.out.printf("Welcome! Today the word to guess is: %s \n", game.getWordToGuess());
-        do {
+        System.out.println("Welcome! Today the word to guess is");
+        System.out.printf("%s: %s \n", mp.getPlayername(), mp.getCurrent().getWordToGuess());
+        mp.changePlayer();
+        System.out.printf("%s: %s \n", mp.getPlayername(), mp.getCurrent().getWordToGuess());
+        mp.changePlayer();
+        
+        while (!mp.gameEnds()) {
+
             Scanner scanner = new Scanner(System.in);
-            System.out.printf("Enter one letter to guess (%d attempts remaining): \n", game.getRemainingAttempts());
+            System.out.printf("%s, enter one letter to guess (%d attempts remaining): \n", mp.getPlayername(), mp.getCurrent().getRemainingAttempts());
             Character usrInput = scanner.nextLine().charAt(0);
-            Boolean correct = game.guessLetter(usrInput);
+            Boolean correct = mp.getCurrent().guessLetter(usrInput);
             if (correct) {
                 System.out.println("Right!");
             } else {
                 System.out.println("Wrong...");
             }
-            System.out.println(game.getWordToGuess());
-        } while (game.getRemainingAttempts() > 0 && !game.getWinStatus());
-        if (game.getWinStatus()) {
-            System.out.println("You WON!");
-        } else {
-            System.out.println("Sorry, you lost. Better luck next time!");
+            System.out.println(mp.getCurrent().getWordToGuess());
+            mp.changePlayer();
+
         }
+
+        if (game1.getWinStatus()) {
+            System.out.println("Player 1 WON!");
+        } else if (game2.getWinStatus()) {
+            System.out.println("Player 2 WON!");
+        } else {
+            System.out.println("Sorry, nobody won. Better luck next time!");
+        }
+
+
+        // do {
+        //     System.out.println(game.getWordToGuess());
+        //     Scanner scanner = new Scanner(System.in);
+        //     System.out.printf("Enter one letter to guess (%d attempts remaining): \n", game.getRemainingAttempts());
+        //     Character usrInput = scanner.nextLine().charAt(0);
+        //     Boolean correct = game.guessLetter(usrInput);
+        //     if (correct) {
+        //         System.out.println("Right!");
+        //     } else {
+        //         System.out.println("Wrong...");
+        //     }
+        // } while (game.getRemainingAttempts() > 0 && !game.getWinStatus());
+        // System.out.printf("Player: %s", game.getWordToGuess());
+
+        // if (game.getWinStatus()) {
+        //     System.out.println("You WON!");
+        // } else {
+        //     System.out.println("Sorry, you lost. Better luck next time!");
+        // }
     }
 }
