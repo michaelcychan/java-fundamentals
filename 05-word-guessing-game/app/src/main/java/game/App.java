@@ -23,9 +23,9 @@ public class App {
         System.out.printf("%s: %s \n", mp.getPlayername(), mp.getCurrent().getWordToGuess());
         mp.changePlayer();
         
+        Scanner scanner = new Scanner(System.in);
         while (!mp.gameEnds()) {
-
-            Scanner scanner = new Scanner(System.in);
+            
             System.out.printf("%s, enter one letter to guess (%d attempts remaining): \n", mp.getPlayername(), mp.getCurrent().getRemainingAttempts());
             Character usrInput = scanner.nextLine().charAt(0);
             Boolean correct = mp.getCurrent().guessLetter(usrInput);
@@ -38,6 +38,7 @@ public class App {
             mp.changePlayer();
 
         }
+        scanner.close();
 
         if (game1.getWinStatus()) {
             System.out.println("Player 1 WON!");
