@@ -32,9 +32,14 @@ public class Shop {
         priceList.put('D', 15);
     }
 
-    private static boolean isInvalidInput(String input){
+    private static boolean isInvalidInput(String cart){
         Pattern pattern = Pattern.compile("[^A-Z]+");
-        Matcher matcher = pattern.matcher(input);
+        Matcher matcher = pattern.matcher(cart);
         return matcher.find();
+    }
+
+    private static int getDiscount(String cart) {
+
+        return 0;
     }
 }

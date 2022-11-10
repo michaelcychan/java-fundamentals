@@ -37,4 +37,18 @@ public class ShopTest {
         int actual = Shop.checkout("AA");
         assertEquals("Two A's cost 50", expected, actual);
     }
+
+    @Test
+    public void testCheckoutOneItemEachType(){
+        int expected = 115;
+        int actual = Shop.checkout("ABCD");
+        assertEquals("ABCD cost 115", expected, actual);
+    }
+    @Test
+    public void testCheckoutOneThreeAWithDiscount(){
+        int expected = 130;
+        int actual = Shop.checkout("AAA");
+        assertEquals("Three As cost 130 with discount", expected, actual);
+    }
+
 }
