@@ -6,48 +6,55 @@ public class ShopTest {
     @Test
     public void testCheckoutWrongCapitalInput(){
         int expected = -1;
-        int actual = Shop.checkout("aBc");
+        Shop shop = new Shop();
+        int actual = shop.checkout("aBc");
         assertEquals("This input with capitalisation is invalid and should return -1", expected, actual);
     }
 
     @Test
     public void testCheckoutWrongCharInput(){
         int expected = -1;
-        int actual = Shop.checkout("-B8x");
+        Shop shop = new Shop();
+        int actual = shop.checkout("-B8x");
         assertEquals("This input is invalid and should return -1", expected, actual);
     }
 
     @Test
     public void testCheckoutNumericInput(){
         int expected = -1;
-        int actual = Shop.checkout("18");
+        Shop shop = new Shop();
+        int actual = shop.checkout("18");
         assertEquals("This numeric input is invalid and should return -1", expected, actual);
     }
 
     @Test
     public void testCheckoutBasicCorrectInputOneA(){
         int expected = 50;
-        int actual = Shop.checkout("A");
+        Shop shop = new Shop();
+        int actual = shop.checkout("A");
         assertEquals("One A costs 50", expected, actual);
     }
 
     @Test
     public void testCheckoutBasicCorrectInputTwoAs(){
         int expected = 100;
-        int actual = Shop.checkout("AA");
-        assertEquals("Two A's cost 50", expected, actual);
+        Shop shop = new Shop();
+        int actual = shop.checkout("AA");
+        assertEquals("Two A's cost 100", expected, actual);
     }
 
     @Test
     public void testCheckoutOneItemEachType(){
         int expected = 115;
-        int actual = Shop.checkout("ABCD");
+        Shop shop = new Shop();
+        int actual = shop.checkout("ABCD");
         assertEquals("ABCD cost 115", expected, actual);
     }
     @Test
     public void testCheckoutOneThreeAWithDiscount(){
         int expected = 130;
-        int actual = Shop.checkout("AAA");
+        Shop shop = new Shop();
+        int actual = shop.checkout("AAA");
         assertEquals("Three As cost 130 with discount", expected, actual);
     }
 
