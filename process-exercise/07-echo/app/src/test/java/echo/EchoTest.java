@@ -37,8 +37,6 @@ public class EchoTest {
         scanner.close();
 
         assertEquals("Say Something.\nMy Input", outputStreamCaptor.toString().trim());
-
-        
     }
 
     @After
@@ -47,5 +45,4 @@ public class EchoTest {
         System.setOut(standardOut);
         System.setIn(standardIn);
     }
-
 }
