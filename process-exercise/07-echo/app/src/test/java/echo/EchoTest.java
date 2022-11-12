@@ -32,12 +32,13 @@ public class EchoTest {
     public void testInitialGreeting() {
         Echo echo = new Echo();
         echo.getEcho();
-        assertEquals("Say Something.", outputStreamCaptor.toString().trim());
 
         Scanner scanner = new Scanner(inputStreamSimulator);
-        scanner.nextLine();
         scanner.close();
-        assertEquals("My Input", outputStreamCaptor.toString().trim());
+
+        assertEquals("Say Something.\nMy Input", outputStreamCaptor.toString().trim());
+
+        
     }
 
     @After
